@@ -1,0 +1,10 @@
+-- crear 2 tablas mamiferos y insectos
+
+CREATE TABLE mamiferos (especie varchar(25));
+CREATE TABLE insectos (especie varchar(25));
+
+--insertar 5 especies de mamiferos
+INSERT INTO mamiferos (especie) VALUES ('leon'), ('tigre'), ('cebra'), ('jirafa'), ('panda');
+
+--insertar 5 especies de insectos
+INSERT INTO insectos (especie) VALUES ('libelula'), ('saltamontes'), ('hormiga'), ('termita'), ('mariposa');
