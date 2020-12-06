@@ -1,0 +1,37 @@
+CREATE TABLE public.aves
+(
+    id integer NOT NULL DEFAULT nextval('aves_id_seq'::regclass),
+    aves character varying(25) COLLATE pg_catalog."default",
+    CONSTRAINT id_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.aves
+    OWNER to postgres;
+
+INSERT INTO public.aves(aves) VALUES ('Aguila');
+INSERT INTO public.aves(aves) VALUES ('Buho');
+INSERT INTO public.aves(aves) VALUES ('Buitre');
+INSERT INTO public.aves(aves) VALUES ('Cigueña');
+INSERT INTO public.aves(aves) VALUES ('Colibri');
+
+
+CREATE TABLE public.reptiles
+(
+    id integer NOT NULL DEFAULT nextval('reptiles_id_seq'::regclass),
+    aves character varying(25) COLLATE pg_catalog."default",
+    CONSTRAINT id_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.reptiles
+    OWNER to postgres;
+
+INSERT INTO public.aves(aves) VALUES ('Cobra');
+INSERT INTO public.aves(aves) VALUES ('Iguana');
+INSERT INTO public.aves(aves) VALUES ('Camaleon');
+INSERT INTO public.aves(aves) VALUES ('Tortuga');
+INSERT INTO public.aves(aves) VALUES ('Cocodrilo');
+
