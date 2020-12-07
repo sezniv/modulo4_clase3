@@ -3,7 +3,8 @@ CREATE TABLE encargados (id_encargados INT,
 			 nombre_encargados VARCHAR(45),
 			 numero_encargado INT,
 			 id_area INT,
-			 id_zoo INT);
+			 id_zoo INT
+                         CONSTRAINT id_encargados_key PRIMARY KEY (id_encargados));
 
 
 
