@@ -1,0 +1,13 @@
+-- CREANDO TABLA ZOO --
+
+CREATE TABLE public.zoo
+(
+    id_zoo serial,
+    nombre_zoo character varying(45),
+    CONSTRAINT id_zoo_pkey PRIMARY KEY (id_zoo)
+);
+
+ALTER TABLE public.zoo
+    OWNER to postgres;
+
+

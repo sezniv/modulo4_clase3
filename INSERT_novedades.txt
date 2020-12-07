@@ -1,0 +1,30 @@
+INSERT INTO public.novedades(
+	id_animal, id_categoria, id_encargados, id_area, id_zoo, fecha_novedad, 		comentario_novedad)
+
+	VALUES (?, ?, ?, ?, ?, ?, 2020-02-01, 'León se come a niño que intentaba alimentarlo');
+
+
+INSERT INTO public.novedades(
+	id_animal, id_categoria, id_encargados, id_area, id_zoo, fecha_novedad, 		comentario_novedad)
+
+	VALUES (?, ?, ?, ?, ?, ?, 2020-04-11, 'Mono es acusado de robar bolso de visitante');
+
+
+INSERT INTO public.novedades(
+	id_animal, id_categoria, id_encargados, id_area, id_zoo, fecha_novedad, 		comentario_novedad)
+
+	VALUES (?, ?, ?, ?, ?, ?, 2020-09-24, '¿Dónde está el hipopotamo?');
+
+
+INSERT INTO public.novedades(
+	id_animal, id_categoria, id_encargados, id_area, id_zoo, fecha_novedad, 		comentario_novedad)
+
+	VALUES (?, ?, ?, ?, ?, ?, 2020-11-30, 'Las hienas se encuentran en huelga de hambre');
+
+
+INSERT INTO public.novedades(
+	id_animal, id_categoria, id_encargados, id_area, id_zoo, fecha_novedad, 		comentario_novedad)
+
+	VALUES (?, ?, ?, ?, ?, ?, 2020-12-05, 'Por fin encontramos al hipopotamo, que alivio');
+
+
