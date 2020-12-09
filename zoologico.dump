@@ -1,0 +1,551 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.1
+-- Dumped by pg_dump version 13.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: prueba5; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE prueba5 WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'Spanish_Spain.1252';
+
+
+ALTER DATABASE prueba5 OWNER TO postgres;
+
+\connect prueba5
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: animal; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.animal (
+    id_animal character varying(5) NOT NULL,
+    fk_id_categoria character varying(10),
+    especie_animal character varying(45)
+);
+
+
+ALTER TABLE public.animal OWNER TO postgres;
+
+--
+-- Name: animalxencargado; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.animalxencargado (
+    fk_id_encargados integer NOT NULL,
+    fk_id_animal character varying(5) NOT NULL
+);
+
+
+ALTER TABLE public.animalxencargado OWNER TO postgres;
+
+--
+-- Name: areas_zoo; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.areas_zoo (
+    id_area integer NOT NULL,
+    fk_id_zoo integer NOT NULL,
+    nombre_area character varying(20)
+);
+
+
+ALTER TABLE public.areas_zoo OWNER TO postgres;
+
+--
+-- Name: areas_zoo_fk_id_zoo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.areas_zoo_fk_id_zoo_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.areas_zoo_fk_id_zoo_seq OWNER TO postgres;
+
+--
+-- Name: areas_zoo_fk_id_zoo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.areas_zoo_fk_id_zoo_seq OWNED BY public.areas_zoo.fk_id_zoo;
+
+
+--
+-- Name: areas_zoo_id_area_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.areas_zoo_id_area_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.areas_zoo_id_area_seq OWNER TO postgres;
+
+--
+-- Name: areas_zoo_id_area_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.areas_zoo_id_area_seq OWNED BY public.areas_zoo.id_area;
+
+
+--
+-- Name: categoria_animal; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.categoria_animal (
+    id_categoria character varying(10) NOT NULL,
+    descripcion_categoria character varying(100)
+);
+
+
+ALTER TABLE public.categoria_animal OWNER TO postgres;
+
+--
+-- Name: encargados; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.encargados (
+    id_encargados integer NOT NULL,
+    fk_id_area integer,
+    supervisor_encargados boolean,
+    nombre_encargado character varying(45),
+    numero_encargado integer
+);
+
+
+ALTER TABLE public.encargados OWNER TO postgres;
+
+--
+-- Name: encargados_id_encargados_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.encargados_id_encargados_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.encargados_id_encargados_seq OWNER TO postgres;
+
+--
+-- Name: encargados_id_encargados_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.encargados_id_encargados_seq OWNED BY public.encargados.id_encargados;
+
+
+--
+-- Name: novedades; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.novedades (
+    id_novedad integer NOT NULL,
+    fk_idencargado integer,
+    fk_idanimal character varying(5),
+    fecha_novedad date,
+    comentario_novedad character varying(100)
+);
+
+
+ALTER TABLE public.novedades OWNER TO postgres;
+
+--
+-- Name: novedades_id_novedad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.novedades_id_novedad_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.novedades_id_novedad_seq OWNER TO postgres;
+
+--
+-- Name: novedades_id_novedad_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.novedades_id_novedad_seq OWNED BY public.novedades.id_novedad;
+
+
+--
+-- Name: zoo; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.zoo (
+    id_zoo integer NOT NULL,
+    nombre_zoo character varying(45)
+);
+
+
+ALTER TABLE public.zoo OWNER TO postgres;
+
+--
+-- Name: zoo_id_zoo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.zoo_id_zoo_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.zoo_id_zoo_seq OWNER TO postgres;
+
+--
+-- Name: zoo_id_zoo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.zoo_id_zoo_seq OWNED BY public.zoo.id_zoo;
+
+
+--
+-- Name: areas_zoo id_area; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.areas_zoo ALTER COLUMN id_area SET DEFAULT nextval('public.areas_zoo_id_area_seq'::regclass);
+
+
+--
+-- Name: areas_zoo fk_id_zoo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.areas_zoo ALTER COLUMN fk_id_zoo SET DEFAULT nextval('public.areas_zoo_fk_id_zoo_seq'::regclass);
+
+
+--
+-- Name: encargados id_encargados; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.encargados ALTER COLUMN id_encargados SET DEFAULT nextval('public.encargados_id_encargados_seq'::regclass);
+
+
+--
+-- Name: novedades id_novedad; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.novedades ALTER COLUMN id_novedad SET DEFAULT nextval('public.novedades_id_novedad_seq'::regclass);
+
+
+--
+-- Name: zoo id_zoo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zoo ALTER COLUMN id_zoo SET DEFAULT nextval('public.zoo_id_zoo_seq'::regclass);
+
+
+--
+-- Data for Name: animal; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.animal (id_animal, fk_id_categoria, especie_animal) FROM stdin;
+ML001	Mamiferos	Le¢n
+ML002	Mamiferos	Lobo
+MM001	Mamiferos	Mono
+MB001	Mamiferos	Burro
+MC001	Mamiferos	Caballo
+IH001	Insectos	Hormiga
+IM001	Insectos	Mariposa
+IM002	Insectos	Mantis
+IE001	Insectos	Escarabajo rinoceronte
+IA001	Insectos	Abeja
+AP001	Aves	P jaro Carpintero
+AB001	Aves	Buho
+AA001	Aves	Aguila
+AC001	Aves	Condor
+AF001	Aves	Flamenco
+RS001	Reptiles	Serpiente Cascabel
+RC001	Reptiles	Camaleon
+RC002	Reptiles	Cocodrilo
+RI001	Reptiles	Iguana
+RT001	Reptiles	Tortuga
+PG001	Peces	Pez globo 
+PG002	Peces	Pez gato
+PP001	Peces	Pez payaso
+PE001	Peces	Pez espada
+PD001	Peces	Pez dorado
+\.
+
+
+--
+-- Data for Name: animalxencargado; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.animalxencargado (fk_id_encargados, fk_id_animal) FROM stdin;
+1	ML001
+2	ML002
+2	MM001
+3	MB001
+3	MC001
+1	AP001
+2	AB001
+2	AA001
+3	AC001
+3	AF001
+4	IH001
+5	IM001
+5	IM002
+6	IE001
+6	IA001
+4	RS001
+5	RC001
+5	RC002
+6	RI001
+6	RT001
+7	PG001
+8	PG002
+8	PP001
+9	PE001
+9	PD001
+\.
+
+
+--
+-- Data for Name: areas_zoo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.areas_zoo (id_area, fk_id_zoo, nombre_area) FROM stdin;
+1	1	Mamiferos y Aves
+2	1	Insectos y Reptiles
+3	1	Peces
+\.
+
+
+--
+-- Data for Name: categoria_animal; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.categoria_animal (id_categoria, descripcion_categoria) FROM stdin;
+Mamiferos	Pelaje-respiracion pulmonar-sangre caliente-Pueden ser placentarios-marsupiales-monotemas
+Insectos	Invertebrados-sangre fria
+Aves	Plumaje-respiracion pulmonar-sangre caliente-Puede volar
+Reptiles	Escamosos-respiracion pulmonar-sangre fria
+Peces	Escamas-resïpiracion branquial-sangre fria- Nadan
+\.
+
+
+--
+-- Data for Name: encargados; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.encargados (id_encargados, fk_id_area, supervisor_encargados, nombre_encargado, numero_encargado) FROM stdin;
+1	1	t	Aragorn	99999999
+2	1	f	Legolas	88888888
+3	1	f	Gimli	77777777
+4	2	t	Hermione	66666666
+5	2	f	Harry	55555555
+6	2	f	Ron	44444444
+7	3	t	Prue	33333333
+8	3	f	Phoebe	22222222
+9	3	f	Piper	11111111
+\.
+
+
+--
+-- Data for Name: novedades; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.novedades (id_novedad, fk_idencargado, fk_idanimal, fecha_novedad, comentario_novedad) FROM stdin;
+1	1	ML001	2020-12-08	Le¢n ha mordido a un visitante 
+2	1	AP001	2020-12-10	Intento de escape de un pajaro carpintero 
+3	8	PP001	2020-12-20	Un pez payaso ha sido alimentado por un visitante 
+\.
+
+
+--
+-- Data for Name: zoo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.zoo (id_zoo, nombre_zoo) FROM stdin;
+1	Awake Zoo
+\.
+
+
+--
+-- Name: areas_zoo_fk_id_zoo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.areas_zoo_fk_id_zoo_seq', 1, false);
+
+
+--
+-- Name: areas_zoo_id_area_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.areas_zoo_id_area_seq', 3, true);
+
+
+--
+-- Name: encargados_id_encargados_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.encargados_id_encargados_seq', 9, true);
+
+
+--
+-- Name: novedades_id_novedad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.novedades_id_novedad_seq', 1, false);
+
+
+--
+-- Name: zoo_id_zoo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.zoo_id_zoo_seq', 1, true);
+
+
+--
+-- Name: animal animal_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.animal
+    ADD CONSTRAINT animal_pkey PRIMARY KEY (id_animal);
+
+
+--
+-- Name: areas_zoo areas_zoo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.areas_zoo
+    ADD CONSTRAINT areas_zoo_pkey PRIMARY KEY (id_area);
+
+
+--
+-- Name: animalxencargado axe_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.animalxencargado
+    ADD CONSTRAINT axe_pkey PRIMARY KEY (fk_id_encargados, fk_id_animal);
+
+
+--
+-- Name: categoria_animal categoria_animal_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categoria_animal
+    ADD CONSTRAINT categoria_animal_pkey PRIMARY KEY (id_categoria);
+
+
+--
+-- Name: encargados encargados_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.encargados
+    ADD CONSTRAINT encargados_pkey PRIMARY KEY (id_encargados);
+
+
+--
+-- Name: novedades novedades_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.novedades
+    ADD CONSTRAINT novedades_pkey PRIMARY KEY (id_novedad);
+
+
+--
+-- Name: zoo zoo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zoo
+    ADD CONSTRAINT zoo_pkey PRIMARY KEY (id_zoo);
+
+
+--
+-- Name: animal animal_fk_id_categoria_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.animal
+    ADD CONSTRAINT animal_fk_id_categoria_fkey FOREIGN KEY (fk_id_categoria) REFERENCES public.categoria_animal(id_categoria);
+
+
+--
+-- Name: animalxencargado animalxencargado_fk_id_animal_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.animalxencargado
+    ADD CONSTRAINT animalxencargado_fk_id_animal_fkey FOREIGN KEY (fk_id_animal) REFERENCES public.animal(id_animal) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: animalxencargado animalxencargado_fk_id_encargados_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.animalxencargado
+    ADD CONSTRAINT animalxencargado_fk_id_encargados_fkey FOREIGN KEY (fk_id_encargados) REFERENCES public.encargados(id_encargados) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: areas_zoo areas_zoo_fk_id_zoo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.areas_zoo
+    ADD CONSTRAINT areas_zoo_fk_id_zoo_fkey FOREIGN KEY (fk_id_zoo) REFERENCES public.zoo(id_zoo);
+
+
+--
+-- Name: encargados encargados_fk_id_area_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.encargados
+    ADD CONSTRAINT encargados_fk_id_area_fkey FOREIGN KEY (fk_id_area) REFERENCES public.areas_zoo(id_area);
+
+
+--
+-- Name: novedades novedades_fk_idencargado_fk_idanimal_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.novedades
+    ADD CONSTRAINT novedades_fk_idencargado_fk_idanimal_fkey FOREIGN KEY (fk_idencargado, fk_idanimal) REFERENCES public.animalxencargado(fk_id_encargados, fk_id_animal);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
