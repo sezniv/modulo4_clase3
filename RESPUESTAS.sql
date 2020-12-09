@@ -22,3 +22,4 @@ WHERE fk_id_categoria = 'Peces';
 SELECT fk_id_area, nombre_encargado FROM encargados WHERE supervisor_encargados = 't';
 -- Mostar las novedades relacionadas a solo visitantes
 SELECT * FROM novedades WHERE comentario_novedad like '%visitante%';
+UPDATE zoo set nombre_zoo = 'Animalitos en cautiverio' where id_zoo = 1; 
