@@ -11,3 +11,8 @@ ALTER TABLE public.zoo
     OWNER to postgres;
 
 
+------INSERT--------
+
+INSERT INTO public.zoo(
+	 nombre_zoo)
+	VALUES ('Animalitos en cautiverio');

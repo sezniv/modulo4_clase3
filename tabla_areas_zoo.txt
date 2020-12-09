@@ -1,0 +1,38 @@
+
+
+
+-----------TABLA-------------
+
+
+CREATE TABLE public.areas_zoo
+(
+    id_area_zoo integer NOT NULL DEFAULT nextval('areas_zoo_id_area_zoo_seq'::regclass),
+    id_zoo_fk integer,
+    nombre_area character varying COLLATE pg_catalog."default",
+    CONSTRAINT id_area_zoo_pkey PRIMARY KEY (id_area_zoo),
+    CONSTRAINT areas_zoo_x_zoo_fkey FOREIGN KEY (id_zoo_fk)
+        REFERENCES public.zoo (id_zoo) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.areas_zoo
+    OWNER to postgres;
+
+
+--------------INSERT----------------------------
+
+
+INSERT INTO public.areas_zoo(
+	id_zoo_fk, nombre_area)
+	VALUES (1, 'Mamiferos y Aves');
+	
+INSERT INTO public.areas_zoo(
+	id_zoo_fk, nombre_area)
+	VALUES (1, 'Insectos y Reptiles');
+	
+INSERT INTO public.areas_zoo(
+	id_zoo_fk, nombre_area)
+	VALUES (1, 'Peces');
