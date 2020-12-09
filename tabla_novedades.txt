@@ -1,0 +1,24 @@
+create table novedades(
+id_novedad serial primary key, 
+cod_animal integer not null,
+cod_categoria integer not null,
+cod_encargados integer not null,
+cod_area intenger not null,
+cod_zoo integer not null,
+fecha_novedad TIMESTAMP,
+comentario_novedad VARCHAR(100)
+
+FOREIGN KEY (cod_animal)
+REFERENCES animal_X_encargados(id_animal),
+
+FOREIGN KEY (cod_categoria)
+REFERENCES animal_X_encargados(id_categoria),
+
+FOREIGN KEY (cod_encargados)
+REFERENCES animal_X_encargados(id_encargados),
+
+FOREIGN KEY (cod_area)
+REFERENCES animal_X_encargados(id_area),
+
+FOREIGN KEY (cod_zoo)
+REFERENCES animal_X_encargados(id_zoo))
